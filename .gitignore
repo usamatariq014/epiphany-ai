@@ -1,0 +1,43 @@
+# --- Python Internals ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Virtual Environments ---
+venv/
+env/
+.venv/
+.env
+
+# --- Environment Variables & Secrets ---
+.env
+.env.local
+# NEVER commit your API keys!
+
+# --- IDEs & Editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Project Specific Data (Don't commit user data) ---
+# Ignore the local SQLite database
+data/*.db
+data/*.sqlite
+
+# Ignore input EPUB files (unless they are sample data)
+*.epub
+data/*.epub
+
+# Ignore generated Anki decks
+*.apkg
+output/*.apkg
+
+# --- Logs & Temp Files ---
+*.log
+*.pot
+*.mo
+
+# --- OS Specific ---
+.DS_Store
+Thumbs.db

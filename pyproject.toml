@@ -1,0 +1,105 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "epiphany-ai"
+version = "0.1.0"
+description = "Turn EPUBs into Brain Power - Extract vocabulary, enrich with AI, and create Anki decks"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Epiphany AI Team"}
+]
+keywords = ["epub", "vocabulary", "anki", "ai", "language-learning", "spaced-repetition"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Education",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+dependencies = [
+    # CLI & UI
+    "typer>=0.9.0",
+    "rich>=13.0.0",
+    
+    # EPUB processing
+    "ebooklib>=0.18",
+    "beautifulsoup4>=4.12.0",
+    
+    # NLP & text processing
+    "nltk>=3.8",
+    
+    # Database
+    "sqlalchemy>=2.0.0",
+    
+    # Anki deck generation
+    "genanki>=0.13.0",
+    
+    # AI integration (OpenRouter uses OpenAI-compatible API)
+    "openai>=1.0.0",
+    
+    # Configuration & environment
+    "python-dotenv>=1.0.0",
+    
+    # Data validation
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0",
+]
+
+[project.scripts]
+epiphany = "src.main:app"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "B", "I"]
+target-version = "py39"
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = [
+    "ebooklib.*",
+    "genanki.*",
+    "nltk.*",
+]
+ignore_missing_imports = true
